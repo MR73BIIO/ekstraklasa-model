@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "ekstraklasa-model: cards and fouls in the Polish Ekstraklasa, tested on unseen matches"
+abstract: >-
+  A measurement project on cards and fouls in the Polish Ekstraklasa: referee, teams and
+  players, every idea tested against a simple baseline on matches the model has not seen,
+  with the market used only as a check. Method, findings with sample sizes, rejected and
+  open hypotheses, and the project timeline.
+authors:
+  - family-names: Ruszczak
+    given-names: Marcin
+    alias: MR73BIIO
+    orcid: "https://orcid.org/0009-0004-0170-4277"
+repository-code: "https://github.com/MR73BIIO/ekstraklasa-model"
+license: CC-BY-4.0
+version: "0.1"
+date-released: "2026-10-14"
+keywords:
+  - football
+  - sports analytics
+  - Ekstraklasa
+  - referee
+  - out-of-sample testing
+  - data quality

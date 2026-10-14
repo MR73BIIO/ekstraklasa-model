@@ -1,5 +1,7 @@
 # ekstraklasa-model
 
+![Ekstraklasa match model](docs/img/cover.png)
+
 How many cards and fouls will a match in the Polish Ekstraklasa have, and what really moves that number?
 
 I started this in July 2026 as a betting question. It became a measurement project. The model is built from the referee, the teams and the players on the pitch, and every idea has to beat a simple baseline on matches it has not seen. Most ideas did not.
