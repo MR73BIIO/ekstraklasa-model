@@ -13,6 +13,14 @@ authors:
     orcid: "https://orcid.org/0009-0004-0170-4277"
 repository-code: "https://github.com/MR73BIIO/ekstraklasa-model"
 license: CC-BY-4.0
+doi: 10.5281/zenodo.23363157
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23363157
+    description: "All versions"
+  - type: doi
+    value: 10.5281/zenodo.23363158
+    description: "Version 0.1"
 version: "0.1"
 date-released: "2026-10-14"
 keywords:

@@ -1,5 +1,7 @@
 # ekstraklasa-model
 
+[![DOI](https://zenodo.org/badge/1418580832.svg)](https://doi.org/10.5281/zenodo.23363157)
+
 ![Ekstraklasa match model](docs/img/cover.png)
 
 How many cards and fouls will a match in the Polish Ekstraklasa have, and what really moves that number?
