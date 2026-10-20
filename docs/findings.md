@@ -69,3 +69,19 @@ These are tested forward, match by match. None of them is in the model.
 - 434 player profiles with fouls, cards, duels, tackles, passes and minutes, linked to line-ups and events by player ID.
 - Card risk is a property of the player (yellow per 90 + fouls per 90, min. 180 minutes), not of age.
 - A ranking of young players by minutes exists. The next step is a real question from a club or an academy, not more model.
+
+## 5. Round 11: common-sample audit
+
+Round 11 (9 matches) was fully settled: 9/9 matches, no missing outcomes.
+The prediction and context checksums passed.
+
+### Cards
+- On the 8 matches with a closing-market value, model MAE was 1.30, compared with 1.38 for the constant baseline and 1.54 for the closing market.
+- The model's log-loss on the market line was 0.6728, compared with 0.7959 for the market (8 matches).
+- One match was excluded from this comparison because its closing-market average was missing.
+
+### Fouls
+- On the 8 matches with a referee foul prediction, constant-baseline MAE was 4.62, full-model MAE was 4.77, and referee-only MAE was 5.49.
+- One match was excluded from this comparison because the referee foul prediction was missing.
+
+These are small-sample results from one round. They do not establish a durable model advantage or an edge over bookmakers. The model was not changed: the pre-defined R1 condition was not met (3.22 actual cards per match, below the 4.5 threshold).

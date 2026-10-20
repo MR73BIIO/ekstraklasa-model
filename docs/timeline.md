@@ -28,4 +28,5 @@
 - The match pages changed their structure mid-weekend. The scrapers were fixed, and a match is now saved only after the final whistle.
 - One script per round: `stan` shows what is complete, `rozlicz` runs the whole settlement.
 - Round 10: 9 of 9 matches complete. Model 3.61 cards per match, reality 4.89. A rule for round 11 was written before it: if round 11 is again about 4.5 per match, the season correction changes.
-- Round 11 (17–18 October): first round where the whole chain should run by itself, from the match list to the verdict.
+- Round 11 (17–18 October): planned as the first round where the whole chain would run by itself, from the match list to the verdict.
+- Round 11 (17–18 October): all 9 matches settled, with no missing outcomes. The K11 audit added common-sample comparisons for cards and fouls. The cards model had lower MAE than the constant baseline on 8 matched games; for fouls, the constant baseline had lower MAE than both the full and referee-only models. One round is not enough to establish a durable advantage, and the pre-defined R1 condition was not met, so the model remained unchanged.

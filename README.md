@@ -47,12 +47,14 @@ How the project went, month by month: [`docs/timeline.md`](docs/timeline.md).
 - No betting advice. This is a measurement project.
 - The code runs on my server and is not published in this repo yet.
 
-## Next
 
-- Round 11: the first round where the whole pipeline runs from the match list to the verdict without manual steps.
-- Fouls model with the players actually on the pitch (the referee alone did not beat a flat average on fouls in a small sample).
-- Scouting: the player layer is ready, the first question has to come from a real recipient (a club or an academy).
+## Current status
 
+- Round 11: all 9 matches settled, with no missing outcomes. The audit now compares cards and fouls models on common samples.
+- Cards: on 8 matched games, model MAE was 1.30 versus 1.38 for the constant baseline. This is a one-round result, not evidence of a durable edge.
+- Fouls: on 8 matched games, the constant baseline outperformed both the full model and the referee-only model by MAE.
+- The model was not changed: the pre-defined R1 condition was not met.
+- Next: fouls model with the players actually on the pitch; scouting based on a real question from a club or an academy.
 ---
 
 Marcin Ruszczak · PL · DE · RU · EN
