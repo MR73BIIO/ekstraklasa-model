@@ -50,11 +50,12 @@ How the project went, month by month: [`docs/timeline.md`](docs/timeline.md).
 
 ## Current status
 
-- Round 11: all 9 matches settled, with no missing outcomes. The audit now compares cards and fouls models on common samples.
-- Cards: on 8 matched games, model MAE was 1.30 versus 1.38 for the constant baseline. This is a one-round result, not evidence of a durable edge.
-- Fouls: on 8 matched games, the constant baseline outperformed both the full model and the referee-only model by MAE.
+- Round 12: the first round run by the engine alone, from the prediction committed before kick-off to the verdict published after the last match.
+- Cards against the closing market: the market won Round 12 (log-loss 0.628 vs 0.681). Rounds 11 and 12 together, the model is slightly ahead (0.677 vs 0.718, 15 games). Not a conclusion.
+- Fouls: the constant won Round 11, the referee alone won Round 12. Together the full model is slightly ahead. Nothing has held yet.
+- The idea that the lower team in the table fouls more was tested on 88 matches with thresholds written first, and rejected.
 - The model was not changed: the pre-defined R1 condition was not met.
-- Next: fouls model with the players actually on the pitch; scouting based on a real question from a club or an academy.
+- Next: Round 13; minutes played in the line-ups, needed for the open hypotheses on starting line-ups and players one card away from suspension.
 ---
 
 Marcin Ruszczak · PL · DE · RU · EN

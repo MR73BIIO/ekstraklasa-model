@@ -46,6 +46,8 @@ Every finding has its sample size. Small samples are marked as hypotheses.
 | A rule change makes a step between seasons | 2 seasons | 4.30 vs 4.38. No effect. Only a weak pattern: early rounds a bit higher than late rounds. |
 | Coaches take off booked players | substitutions by position | Crude 33.3% vs 24.6% falls to 29.1% vs 27.7% when the position is controlled. Rejected. |
 | xG strategy with +96% ROI | check of the data | The xG was from after the match. Without the leak the strategy does not work. |
+| The lower team in the table fouls more | 88 matches, rounds 3 to 12, table as it stood before each match; thresholds written before calculating | Lower team fouled more in 43.9% of matches, 0.52 fouls fewer on average (needed: 60%, +1.5). Rejected. |
+| The lower team in the table gets more yellow cards | same 88 matches | 52.2% of matches, +0.03 cards (needed: 58%, +0.4). Rejected. |
 | Player features on fouls in another league | 759 test matches | Referee alone MAE 4.24, full model 4.16. The difference is below the standard error. |
 
 ### The model does not "systematically underestimate"
@@ -85,3 +87,35 @@ The prediction and context checksums passed.
 - One match was excluded from this comparison because the referee foul prediction was missing.
 
 These are small-sample results from one round. They do not establish a durable model advantage or an edge over bookmakers. The model was not changed: the pre-defined R1 condition was not met (3.22 actual cards per match, below the 4.5 threshold).
+
+## 6. Round 12: the engine alone, and the market won
+
+Round 12 (23–25 October, 9 matches) ran without manual steps: the prediction was committed before the first kick-off, referees came from the official appointment list (9 of 9), all 9 matches were settled, and the verdict was computed once and published by the engine.
+
+### Cards
+- On the 7 matches with a closing market, model MAE was 1.73 and market MAE was 1.73. Log-loss on the market line: model 0.681, market 0.628. The market was better at picking the side.
+- Market average 4.18 cards per match, reality 3.57, model 3.69.
+- One match (28 fouls, the strictest referee in my history) ended with 0 cards against a prediction of 4.34.
+- R1 was not met (3.44 cards per match, below 4.5). The model was not changed.
+
+### Fouls
+- The referee alone had the lowest MAE in this round: 3.79 on the 8 matches with a referee prediction. In Round 11 it had the highest.
+
+### Rounds 11 and 12 together
+Computed only from the sealed outcome files of both rounds, each comparison on a common sample:
+
+| Comparison | n | Model | Other |
+|---|---|---|---|
+| Cards: model vs constant baseline (MAE) | 17 | 1.51 | 1.51 |
+| Cards: model vs closing market (MAE) | 15 | 1.50 | 1.63 |
+| Cards: model vs closing market (log-loss, over/under) | 15 | 0.677 | 0.718 |
+| Fouls: full model / referee alone / constant (MAE) | 16 | 4.56 | 4.64 / 4.88 |
+
+Two rounds, two different winners on fouls. Against the closing market the model is slightly ahead in total, after losing Round 12. Fifteen games are not a conclusion.
+
+### What went wrong in Round 12
+- The opening-odds step reported success when only the corners market was online, so 8 of 9 matches had no opening cards market in the prediction.
+- One odds link was not added (a manual step).
+- One referee's history was stored under a misspelled name, so the first match had no model estimate.
+
+None of these needed an intervention during the round. They are on the fix list before Round 13.

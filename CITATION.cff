@@ -21,7 +21,7 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.23363158
     description: "Version 0.1"
-version: "0.2"
+version: "0.3"
 keywords:
   - football
   - sports analytics
