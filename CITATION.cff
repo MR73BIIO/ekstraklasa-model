@@ -21,6 +21,12 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.23363158
     description: "Version 0.1"
+  - type: doi
+    value: 10.5281/zenodo.23526319
+    description: "Version 0.2"
+  - type: doi
+    value: 10.5281/zenodo.23650195
+    description: "Version 0.3"
 version: "0.3"
 keywords:
   - football
