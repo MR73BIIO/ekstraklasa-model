@@ -25,7 +25,7 @@ This repo shows the method, what survived, what was rejected, and why.
 |---|---|---|
 | Referee | cards and fouls per match from his history (λ), corrected to the current season | in the model |
 | Teams | fouls of both teams | in the fouls model, not in the cards model (overfits on cards) |
-| Players | 434 player profiles: fouls, cards, duels, passes, minutes, age, value | basis for the fouls model and for scouting |
+| Players | 434 player profiles, and from November per-match player statistics for 115 matches: minutes, fouls committed and drawn, cards, duels, passes | basis for the fouls model and for scouting |
 | Context | coach under pressure, derby, cup match in the week, weather | collected, tested match by match, not in the model |
 | Market | over/under lines for cards from 5 Polish bookmakers | used only to check the model, never as an input |
 
@@ -50,12 +50,14 @@ How the project went, month by month: [`docs/timeline.md`](docs/timeline.md).
 
 ## Current status
 
-- Round 12: the first round run by the engine alone, from the prediction committed before kick-off to the verdict published after the last match.
-- Cards against the closing market: the market won Round 12 (log-loss 0.628 vs 0.681). Rounds 11 and 12 together, the model is slightly ahead (0.677 vs 0.718, 15 games). Not a conclusion.
-- Fouls: the constant won Round 11, the referee alone won Round 12. Together the full model is slightly ahead. Nothing has held yet.
-- The idea that the lower team in the table fouls more was tested on 88 matches with thresholds written first, and rejected.
-- The model was not changed: the pre-defined R1 condition was not met.
-- Next: Round 13; minutes played in the line-ups, needed for the open hypotheses on starting line-ups and players one card away from suspension.
+- Rounds 11 to 13 run through the engine, each prediction committed before the first kick-off.
+- Cards against the closing market, three rounds together: the market is better (log-loss 0.699 vs 0.734, 23 matches). The model is level with a flat average. No edge, as in the first price test in Round 6.
+- Fouls, three rounds together: the referee-based models beat the constant by about 0.4 fouls per match (24 matches), but the winner still changes from round to round.
+- Round 13 failed its own process rules: the scraped match pages changed during the round and needed three code fixes and two manual inputs.
+- Fix: the player data (line-ups, minutes, events, player statistics) now comes from a structured statistics API. Rounds 1 to 13 are loaded, 115 matches.
+- The model was not changed: the pre-defined R1 condition was not met in any of the three rounds.
+- Next: Round 14 with the new data source, under the same rules.
+
 ---
 
 Marcin Ruszczak · PL · DE · RU · EN

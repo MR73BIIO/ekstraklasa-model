@@ -31,3 +31,9 @@
 - Round 11 (17–18 October): planned as the first round where the whole chain would run by itself, from the match list to the verdict.
 - Round 11 (17–18 October): all 9 matches settled, with no missing outcomes. The K11 audit added common-sample comparisons for cards and fouls. The cards model had lower MAE than the constant baseline on 8 matched games; for fouls, the constant baseline had lower MAE than both the full and referee-only models. One round is not enough to establish a durable advantage, and the pre-defined R1 condition was not met, so the model remained unchanged.
 - Round 12 (23–25 October): the whole chain ran by itself. Prediction committed at 14:00:05 before the first match at 18:00, 9 of 9 matches settled, verdict published by the engine at 20:15:33. The closing market beat the model on cards in this round. A hypothesis that the lower team fouls more was written down before the round and rejected on 88 matches.
+- Round 13 (30 October – 2 November): prediction committed at 14:00:05 before the first match at 18:00, 9 of 9 matches settled, verdict computed by the engine on 2 November at 23:15. The closing market beat the model on cards again, and the constant beat it on error. The process did not hold: three code changes and two manual inputs during the round, all caused by changes on the scraped match pages. Result: refuted under its own rules.
+
+## November 2026: a new data source
+- The player layer moved to a structured statistics API. Checked on Round 13 against the old source: team statistics identical in 9 of 9 matches, minutes complete where the old source had 51 gaps.
+- Rounds 1 to 12 loaded from the new source: 106 of 106 matches, 4,991 player rows. Team totals compared, not overwritten.
+- Rounds 11 to 13 together: the market is ahead on cards (log-loss 0.699 vs 0.734, 23 matches); on fouls the referee-based models are ahead of the constant (4.18 vs 4.62, 24 matches).

@@ -119,3 +119,64 @@ Two rounds, two different winners on fouls. Against the closing market the model
 - One referee's history was stored under a misspelled name, so the first match had no model estimate.
 
 None of these needed an intervention during the round. They are on the fix list before Round 13.
+
+## 7. Round 13: the market won, and the data source broke
+
+Round 13 (30 October – 2 November, 9 matches). The prediction was committed on 30 October at 14:00:05, the first match started at 18:00. All 9 matches were settled and the verdict was computed once by the engine on 2 November at 23:15.
+
+Prediction file SHA-256:
+`0bba6088c7dd46b76ed537925651b40cbe01903b8afd9eb6ab11f3d707d6dc71`
+
+Outcome file SHA-256:
+`41d109836c1ab4dc3ed63766024bf77a29cb8190c4843a52e04445a4f8d25a0c`
+
+### Cards
+- Model 3.80 cards per match, reality 4.00. Six of nine matches were above the model.
+- MAE on the 8 matches with a model estimate: model 1.93, constant baseline 1.75. The constant won.
+- Closing market on 8 matches: market average 4.08, model 3.80, reality 4.12. MAE model 2.18, market 1.84. Log-loss on the market line: model 0.841, market 0.665. Over came in 6 of 8 times.
+- The round was spread wide: one match ended with 0 cards against a prediction of 4.57, another with 7 cards against 3.43.
+- R1 was not met (4.0 cards per match, below 4.5). The model was not changed.
+
+### Fouls
+- Referee alone 3.35, full model 3.53, constant 3.94 (MAE). The referee alone won for the second round in a row.
+
+### The process failed its own conditions
+The rules for Round 13 were written before the round. The engine had to run without code changes and without manual input. It did not:
+- Three code changes during the round: the official appointment list had two matches at the same hour and blocked the referee step; the result pages changed one word of their final-whistle label; the match timeline pages changed their structure. Each one stopped part of the settlement.
+- Two manual inputs: a referee change published in a newer appointment list, and one player stored under two names and two IDs.
+- Opening odds were captured for only 3 of 9 matches before the seal; the other links were added later.
+- Minutes played were complete for only 5 of 9 matches.
+
+Under the rules written before the round, this result is **refuted**. The diagnosis: the model was not the weak part. The weak part was the source of player data, a set of public match pages that change without notice.
+
+## 8. The fix: a structured data source for players
+
+After Round 13 the player layer (line-ups, events, minutes, player statistics) moved from scraped match pages to a structured statistics API. Match pages remain only for odds.
+
+Check on Round 13, both sources side by side:
+- 9 of 9 matches found in both. Team statistics (fouls, yellow and red cards) identical in 9 of 9.
+- 280 players with minutes. Minutes: 224 identical, 2 different, 51 missing in the old source.
+
+History, Rounds 1 to 12, loaded from the new source:
+- 106 of 106 matches matched by home and away team, 0 problems.
+- 4,991 player rows with minutes, fouls committed and drawn, cards, duels, tackles, passes and rating, now for 115 matches (Rounds 1 to 13), plus formations and coaches for every match.
+- Team totals were compared with the old source and not overwritten. In 15 matches a team total differs by 1 or 2: 12 times on yellow cards, 5 times on fouls. On yellow cards the new source counts more: about 11 extra over 106 matches, around 0.1 per match. The model was fitted on the old counts, so this shift is a known change of source from Round 13 on, not a change of the model.
+- Minutes in the new source include stoppage time, so a full team side can sum to more than 990 minutes.
+
+## 9. Rounds 11 to 13 together
+
+Computed only from the sealed outcome files of the three rounds, each comparison on a common sample.
+
+| Comparison | n | Model | Other |
+|---|---|---|---|
+| Cards: model vs constant baseline (MAE) | 25 | 1.645 | 1.605 |
+| Cards: model vs closing market (MAE) | 23 | 1.739 | 1.700 |
+| Cards: model vs closing market (log-loss, over/under) | 23 | 0.734 | 0.699 |
+| Fouls: full model / referee alone / constant (MAE) | 24 | 4.18 | 4.21 / 4.62 |
+
+Combined metrics file SHA-256:
+`6fe17c250b634134e163f1b04fad25999a86ed985d10d1199e438518b0b75d22`
+
+- **Cards.** The small lead over the market after Rounds 11 and 12 is gone. After three rounds the closing market is better on both error and picking the side, and the model is level with a flat average. This is the same answer the price test gave in Round 6: the cards market in Ekstraklasa is priced well.
+- **Fouls.** In total, the referee-based models beat the constant by about 0.4 fouls per match. Round by round it is not stable yet: the constant won Round 11, the referee alone won Rounds 12 and 13.
+- 25 matches is still a small sample. Nothing in the model was changed.
